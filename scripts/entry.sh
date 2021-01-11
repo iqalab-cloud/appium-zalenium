@@ -40,6 +40,8 @@ if [ ${CURRENT_GID} -ne 1000 ]; then
   fi
 fi
 
+echo resolver $(awk 'BEGIN{ORS=" "} $1=="nameserver" {print $2}' /etc/resolv.conf) ";" > ./resolvers.conf
+
 __run_with_gosu="false"
 if [ "${__run_with_gosu}" == "true" ]; then
     # We still need gosu when accessing the docker.sock
