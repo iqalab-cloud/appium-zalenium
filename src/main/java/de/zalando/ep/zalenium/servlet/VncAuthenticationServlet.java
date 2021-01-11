@@ -94,8 +94,8 @@ public class VncAuthenticationServlet extends RegistryBasedServlet {
         .filter(proxy -> proxy instanceof DefaultRemoteProxy)
         .map(proxy -> ((DefaultRemoteProxy)proxy).getRemoteHost())
         .filter(remoteHost -> {
-            LOGGER.info(String.format("VNC validation: Request: %s:%s , Actual: %s:6080", host.get(), port.get(), remoteHost.getHost() ));
-            return host.equals(Optional.of(remoteHost.getHost())) && port.equals(Optional.of("6080"));
+            LOGGER.info(String.format("VNC validation(Exclude port match): Request: %s , Actual: %s", host.get(), port.get(), remoteHost.getHost() ));
+            return host.equals(Optional.of(remoteHost.getHost()));
         })
         .findAny()
         .map(x -> AUTHORISED)

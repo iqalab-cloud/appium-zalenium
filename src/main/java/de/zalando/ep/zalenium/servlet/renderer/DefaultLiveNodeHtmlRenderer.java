@@ -48,7 +48,7 @@ public class DefaultLiveNodeHtmlRenderer implements HtmlRenderer {
         StringBuilder testBuild = new StringBuilder();
 
         // Adding live preview
-        int noVncPort = 6080;
+        int noVncPort = 6080 + (proxy.getRemoteHost().getPort() - 4723);
         String noVncIpAddress = proxy.getRemoteHost().getHost();
         String websockifyContextPath = Strings.isNullOrEmpty(contextPath) ? "" : contextPath + "/";
         String noVncViewBaseUrl = "%s/vnc/host/%s/port/%s/?nginx=&path=%sproxy/%s:%s/websockify&view_only=%s";
